@@ -1,0 +1,48 @@
+.aside {
+    max-width: 200px;
+    min-width: 200px;
+    padding-top: 7px;
+}
+
+.sizes {
+    &__block {
+        padding-top: 25px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__item {
+        user-select: none;
+        margin-right: 10px;
+        width: 35px;
+        height: 35px;
+        border-radius: 100%;
+        background-color: $grayColorOne;
+        text-align: center;
+        line-height: 35px;
+        font-size: 10px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        transition: background-color 0.4s;
+
+        &:hover {
+            background-color: darken($grayColorOne, 8%);
+            transition: background-color 0.4s;
+        }
+
+        &-filler {
+            flex-grow: 1;
+            visibility: hidden;
+        }
+
+        &-checked {
+            background-color: #0c0c0c;
+            color: white;
+
+            &:hover {
+                background-color: lighten(#0c0c0c, 30%);
+                transition: background-color 0.4s;
+            }
+        }
+    }
+}

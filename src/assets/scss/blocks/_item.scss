@@ -1,0 +1,60 @@
+.item {
+    position: relative;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid  #444A58;
+
+    &__close {
+        cursor: pointer;
+        position: absolute;
+        color: black;
+        top: 0;
+        right: 0;
+    }
+
+    &__figure {
+        width: 80px;
+        height: 80px;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__info {
+        text-align: left;
+    }
+
+    &__quantity {
+        color:  #444A58;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    &__price {
+        color: #EABF09;
+        margin-bottom: 5px;
+        text-align: right;
+    }
+
+    &__buttonBlock {
+        text-align: right;
+    }
+
+    &__minus,
+    &__plus {
+        user-select: none;
+        padding: 2px 5px;
+        background-color: black;
+        cursor: pointer;
+    }
+}

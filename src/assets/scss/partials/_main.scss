@@ -1,0 +1,32 @@
+.main {
+    flex-grow: 1;
+    padding-left: 10px;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &__cart {
+        font-size: 18px;
+        margin-right: 25px;
+        cursor: pointer;
+    }
+
+    &__products {
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 8px;
+    }
+
+    &__filter {
+        display: flex;
+        align-items: center;
+    }
+
+    &__select {
+        margin-left: 15px;   
+    }
+}

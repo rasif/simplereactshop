@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #eaeaea;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: darken(#eaeaea, 1%);
+}
+
+html, 
+body {
+    min-height: 100%;
+}
+
+body {
+    overflow-y: overlay;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.page {
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+
+    &__wrapper {
+        flex-grow: 1;
+        display: flex;
+    }
+}

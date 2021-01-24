@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Sneakers One",
+        "price": 36,
+        "image": "/images/1.jpg",
+        "sizes": ["XS", "S", "M", "ML", "L"]
+    },
+    {
+        "id": 2,
+        "name": "Sneakers Two",
+        "price": 30,
+        "image": "/images/2.jpg",
+        "sizes": ["XS", "S", "M", "ML"]
+    },
+    {
+        "id": 3,
+        "name": "Sneakers Three",
+        "price": 43,
+        "image": "/images/3.jpg",
+        "sizes": ["XS", "S", "M"]
+    },
+    {
+        "id": 4,
+        "name": "Sneakers Four",
+        "price": 40,
+        "image": "/images/4.jpg",
+        "sizes": ["XS", "S"]
+    },
+    {
+        "id": 5,
+        "name": "Sneakers Five",
+        "price": 37,
+        "image": "/images/5.jpg",
+        "sizes": ["XS"]
+    }
+]
