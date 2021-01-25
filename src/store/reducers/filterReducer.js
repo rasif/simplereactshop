@@ -10,17 +10,17 @@ const filterReducer = (state = initialState, action) => {
 		case filterTypes.SET_ORDER_FILTER:
 			return {
 				...state,
-				orderFilter: action.payload.orderFilter
+				orderFilter: action.payload.filter
 			};
 		case filterTypes.ADD_SIZE_FILTER:
 			return {
 				...state,
-				sizeFilter: [...state.sizeFilter, action.payload.sizeFilter]
+				sizeFilter: [...state.sizeFilter, action.payload.filter]
 			};
 		case filterTypes.REMOVE_SIZE_FILTER:
 			return {
 				...state,
-				sizeFilter: state.sizeFilter.filter(filter => filter !== action.payload.sizeFilter)
+				sizeFilter: state.sizeFilter.filter(filter => filter !== action.payload.filter)
 			};
 		default:
 			return state;
