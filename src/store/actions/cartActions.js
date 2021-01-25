@@ -4,31 +4,24 @@ export const openCart = () => ({type: cartTypes.OPEN_CART});
 
 export const closeCart = () => ({type: cartTypes.CLOSE_CART});
 
-export const addToCart = product => (dispatch, getState) => {
+export const addItem = item => (dispatch, getState) => {
 	const state = getState();
 
-	if (state.cart.items.find(item => item.id === product.id)) {
-		dispatch(increaseInCart(product));
+	if (state.cart.items.find(element => element.id === item.id)) {
+		dispatch(increaseItem(item));
 	} else {
-		product.quantity = 1;
-		dispatch({type: cartTypes.ADD_TO_CART, payload: {item: product}});
+		dispatch({type: cartTypes.ADD_ITEM, payload: {item}});
 	}
 };
 
-export const increaseInCart = product => dispatch => {
-	product.quantity += 1;
-	dispatch({type: cartTypes.UPDATE_CART, payload: {item: product, price: product.price}});
-};
+export const increaseItem = item => ({type: cartTypes.INCREASE_ITEM, payload: {item}});
 
-export const decreaseInCart = product => dispatch => {
-	if (product.quantity > 1) {
-		product.quantity -= 1;
-		dispatch({type: cartTypes.UPDATE_CART, payload: {item: product, price: -product.price}});
+export const decreaseItem = item => dispatch => {
+	if (item.quantity > 1) {
+		dispatch({type: cartTypes.DECREASE_ITEM, payload: {item}});
 	} else {
-		dispatch({type: cartTypes.DELETE_FROM_CART, payload: {id: product.id, price: -product.price}});
+		dispatch(deleteItem(item));
 	}
 };
 
-export const deleteFromCart = product => dispatch => {
-	dispatch({type: cartTypes.DELETE_FROM_CART, payload: {id: product.id, price: -product.price * product.quantity}});
-};
+export const deleteItem = item => ({type: cartTypes.DELETE_ITEM, payload: {item}});

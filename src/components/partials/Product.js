@@ -1,13 +1,13 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {addToCart} from '../../store/actions/cartActions';
+import {addItem} from '../../store/actions/cartActions';
 
 const Product = props => {
 	console.log('Product');
 
 	const dispatch = useDispatch();
 
-	const handleAdd = () => dispatch(addToCart(props.product));
+	const handleAdd = () => dispatch(addItem(props.product));
 
 	return (
 		<div className='product' onClick={handleAdd}>

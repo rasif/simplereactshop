@@ -2,8 +2,7 @@ import * as cartTypes from '../types/cartTypes';
 
 const initialState = {
 	opened: false,
-	items: [],
-	total: 0
+	items: []
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -18,32 +17,31 @@ const cartReducer = (state = initialState, action) => {
 				...state,
 				opened: false
 			};
-		case cartTypes.ADD_TO_CART:
+		case cartTypes.ADD_ITEM:
 			return {
 				...state,
-				items: [action.payload.item, ...state.items],
-				opened: true,
-				total: state.total + action.payload.item.price
+				items: [{...action.payload.item, quantity: 1}, ...state.items],
+				opened: true
 			};
-		case cartTypes.DELETE_FROM_CART:
+		case cartTypes.DELETE_ITEM:
 			return {
 				...state,
-				items: state.items.filter(item => item.id !== action.payload.id),
-				opened: true,
-				total: state.total + action.payload.price
+				items: state.items.filter(item => item.id !== action.payload.item.id)
 			};
-		case cartTypes.UPDATE_CART:
-			const items = [...state.items];
-
-			const index = items.findIndex(item => item.id === action.payload.item.id);
-
-			items[index].quantity = action.payload.item.quantity;
-
+		case cartTypes.INCREASE_ITEM:
 			return {
 				...state,
-				opened: true,
-				items,
-				total: state.total + action.payload.price
+				items: state.items.map(item =>
+					item.id === action.payload.item.id ? {...item, quantity: item.quantity + 1} : item
+				),
+				opened: true
+			};
+		case cartTypes.DECREASE_ITEM:
+			return {
+				...state,
+				items: state.items.map(item =>
+					item.id === action.payload.item.id ? {...item, quantity: item.quantity - 1} : item
+				)
 			};
 		default:
 			return state;

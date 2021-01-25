@@ -1,20 +1,20 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {deleteFromCart, increaseInCart, decreaseInCart} from '../../store/actions/cartActions';
+import {deleteItem, increaseItem, decreaseItem} from '../../store/actions/cartActions';
 
 const CartItem = props => {
 	const dispatch = useDispatch();
 
 	const handleDelete = () => {
-		dispatch(deleteFromCart(props.item));
+		dispatch(deleteItem(props.item));
 	};
 
 	const handleIncrease = () => {
-		dispatch(increaseInCart(props.item));
+		dispatch(increaseItem(props.item));
 	};
 
 	const handleDecrease = () => {
-		dispatch(decreaseInCart(props.item));
+		dispatch(decreaseItem(props.item));
 	};
 
 	return (
