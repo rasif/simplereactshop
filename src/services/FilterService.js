@@ -1,13 +1,11 @@
 class FilterService {
 	static filterItemsByOrder = (items, filter) => {
-		const filteredItems = [...items];
-
 		if (filter === 'Highest to lowest') {
-			return filteredItems.sort((a, b) => (a.price < b.price ? 1 : -1));
+			return items.sort((a, b) => (a.price < b.price ? 1 : -1));
 		} else if (filter === 'Lowest to highest') {
-			return filteredItems.sort((a, b) => (a.price > b.price ? 1 : -1));
+			return items.sort((a, b) => (a.price > b.price ? 1 : -1));
 		} else {
-			return filteredItems;
+			return [...items];
 		}
 	};
 
@@ -17,6 +15,12 @@ class FilterService {
 		}
 
 		return items.filter(item => item.sizes.some(size => filter.includes(size)));
+	};
+
+	static filterItems = (items, sizeFilter, orderFilter) => {
+		let filtered = this.filterItemsBySizes(items, sizeFilter);
+
+		return this.filterItemsByOrder(filtered, orderFilter);
 	};
 }
 
