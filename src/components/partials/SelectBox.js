@@ -1,40 +1,45 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useState, useEffect, useRef} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {setOrderFilter} from '../../store/actions/filterActions';
 
 const SelectBox = () => {
 	console.log('Select');
 
-	const [isOpened, setIsOpened] = useState(false);
-	const [selected, setSelected] = useState('Select');
-
 	const dispatch = useDispatch();
+	const [isOpened, setIsOpened] = useState(false);
+	const orderFilter = useSelector(state => state.filter.orderFilter);
+	const clickOutsideRef = useRef();
+
+	clickOutsideRef.current = e => {
+		if (!e.target.closest('.select') && isOpened) {
+			setIsOpened(false);
+		}
+	};
 
 	const handleOpen = () => {
 		setIsOpened(!isOpened);
 	};
 
 	const handleSelect = e => {
-		if (e.target.classList.contains('select__item')) {
-			dispatch(setOrderFilter(e.target.innerText));
-			setSelected(e.target.innerText);
-			setIsOpened(false);
-		}
+		dispatch(setOrderFilter(e.target.innerText));
+		setIsOpened(false);
+	};
+
+	const handleClickOutside = e => {
+		clickOutsideRef.current(e);
 	};
 
 	useEffect(() => {
-		document.addEventListener('click', e => {
-			if (!e.target.closest('.select')) {
-				setIsOpened(false);
-			}
-		});
+		document.addEventListener('click', handleClickOutside);
+
+		return () => document.removeEventListener('click', handleClickOutside);
 	}, []);
 
 	const render = () => {
 		return (
 			<div className='main__select select'>
 				<p className='select__text' onClick={handleOpen}>
-					{selected}
+					{orderFilter}
 				</p>
 				{isOpened && (
 					<div className='select__block' onClick={handleSelect}>

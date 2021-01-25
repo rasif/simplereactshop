@@ -5,7 +5,7 @@
     height: 100vh;
     width: 350px;
     background-color: #1B1A20;
-    padding: 40px 20px;
+    padding: 5% 20px;
     color: white;
     transition: 0.5s;
 
@@ -22,9 +22,28 @@
         letter-spacing: 3px;
     }
 
+    &__items {
+        overflow-y: auto;
+        max-height: 65%;
+        padding-right: 8px;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+          
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px #202020;
+        }
+          
+        &::-webkit-scrollbar-thumb {
+            background: lighten(#1B1A20, 3%);
+        }
+    }
+
     &__fixed {
+        height: 25%;
         width: 100%;
-        padding: 40px 20px;
+        padding: 5%;
         position: absolute;
         bottom: 0;
         left: 0;
@@ -32,12 +51,12 @@
     }
 
     &__checkout {
-        padding: 20px 10px;
+        padding: 5%;
         background-color: #0C0B10;
         text-transform: uppercase;
         text-align: center;
         cursor: pointer;
-        margin-top: 30px;
+        margin-top: 4%;
         font-size: 18px;
         font-weight: 700;
         transition: background-color 1s;

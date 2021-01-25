@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SizeBox from './SizeBox';
+import SizeBox from '../partials/SizeBox';
 
 const Aside = () => {
 	console.log('Aside');

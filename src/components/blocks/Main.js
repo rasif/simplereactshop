@@ -1,14 +1,17 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {getItems} from '../../store/actions/productActions';
+import {openCart} from '../../store/actions/cartActions';
 import FilterService from '../../services/FilterService';
 
-import Loading from './Loading';
-import Product from './Product';
+import Loading from '../partials/Loading';
+import SelectBox from '../partials/SelectBox';
+import ProductList from '../partials/ProductList';
 
 const ProductBox = () => {
-	console.log('Product Container');
-	let [count, setCount] = React.useState(0);
+	console.log('Main');
+
+	let countOfProducts = 0;
 	let filteredItems = [];
 
 	const items = useSelector(state => state.product.items);
@@ -22,30 +25,29 @@ const ProductBox = () => {
 		dispatch(getItems());
 	}, []);
 
+	const handleOpen = () => dispatch(openCart());
+
 	const render = () => {
 		filteredItems = FilterService.filterItemsByOrder(items, orderFilter);
 		filteredItems = FilterService.filterItemsBySizes(filteredItems, sizeFilter);
 
-		console.log('Render products');
-
-		if (filteredItems && filteredItems.length) {
-			let template = filteredItems.map(item => <Product key={item.id} product={item} />);
-
-			template.push(<div key={9999} className='product product-filler'></div>);
-
-			return template;
-		} else {
-			return <p>Store is empty</p>;
-		}
+		countOfProducts = filteredItems.length;
 	};
 
+	render();
+
 	return (
-		<>
-			<div className='main__products'>
-				{!loading && render()}
-				{loading && <Loading />}
+		<main className='main'>
+			<div className='main__header'>
+				<p className='main__count'>{countOfProducts} Product(s) found.</p>
+				<div className='main__filter'>
+					<i className='main__cart fas fa-shopping-cart' onClick={handleOpen}></i>
+					<span>Order by</span>
+					<SelectBox />
+				</div>
 			</div>
-		</>
+			{loading ? <Loading /> : <ProductList items={filteredItems} />}
+		</main>
 	);
 };
 

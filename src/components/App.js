@@ -1,11 +1,12 @@
 import React from 'react';
 
-import Aside from './partials/Aside';
-import Main from './partials/Main';
-import CartBox from './partials/CartBox';
+import Aside from './blocks/Aside';
+import Main from './blocks/Main';
+import CartBox from './blocks/CartBox';
 
 const App = () => {
 	console.log('App');
+
 	return (
 		<>
 			<Aside />

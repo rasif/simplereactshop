@@ -1,7 +1,8 @@
 import React, {useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {closeCart} from '../../store/actions/cartActions';
-import CartItem from './CartItem';
+
+import CartItem from '../partials/CartItem';
 
 const CartBox = () => {
 	console.log('Cart');
@@ -9,39 +10,46 @@ const CartBox = () => {
 	const items = useSelector(state => state.cart.items);
 	const isOpened = useSelector(state => state.cart.opened);
 	const total = useSelector(state => state.cart.total);
-	const opening = useRef(false);
+
+	const clickOutsideRef = useRef();
 
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		opening.current = isOpened;
+	clickOutsideRef.current = e => {
+		const canClose =
+			isOpened &&
+			!e.target.closest('.cart') &&
+			!e.target.classList.contains('main__cart') &&
+			!e.target.closest('.product') &&
+			!e.target.classList.contains('item__close') &&
+			!e.target.classList.contains('item__minus');
 
+		if (canClose) {
+			dispatch(closeCart());
+		}
+	};
+
+	const handleClickOutside = e => {
+		clickOutsideRef.current(e);
+	};
+
+	const handleClose = () => {
+		dispatch(closeCart());
+	};
+
+	useEffect(() => {
+		document.addEventListener('click', handleClickOutside);
+
+		return () => document.removeEventListener('click', handleClickOutside);
+	}, []);
+
+	useEffect(() => {
 		if (isOpened) {
 			document.body.style.overflowY = 'hidden';
 		} else {
 			document.body.style.overflowY = 'overlay';
 		}
 	}, [isOpened]);
-
-	useEffect(() => {
-		document.addEventListener('click', e => {
-			const canClose =
-				opening.current &&
-				!e.target.closest('.cart') &&
-				!e.target.classList.contains('main__cart') &&
-				!e.target.closest('.product') &&
-				!e.target.classList.contains('item__close') &&
-				!e.target.classList.contains('item__minus');
-
-			if (canClose) {
-				dispatch(closeCart());
-			}
-		});
-	}, []);
-
-	const handleClose = () => {
-		dispatch(closeCart());
-	};
 
 	const renderItems = () => {
 		if (items && items.length) {
