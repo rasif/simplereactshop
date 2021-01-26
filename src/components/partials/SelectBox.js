@@ -1,13 +1,16 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {setOrderFilter} from '../../store/actions/filterActions';
+import {setSortFilter} from '../../store/actions/filterActions';
+import {selectSortFilter} from '../../store/selectors';
 
 const SelectBox = () => {
 	console.log('Select');
 
-	const dispatch = useDispatch();
 	const [isOpened, setIsOpened] = useState(false);
-	const orderFilter = useSelector(state => state.filter.orderFilter);
+	const sortFilter = useSelector(state => selectSortFilter(state));
+
+	const dispatch = useDispatch();
+
 	const clickOutsideRef = useRef();
 
 	clickOutsideRef.current = e => {
@@ -21,7 +24,7 @@ const SelectBox = () => {
 	};
 
 	const handleSelect = e => {
-		dispatch(setOrderFilter(e.target.innerText));
+		dispatch(setSortFilter(e.target.innerText));
 		setIsOpened(false);
 	};
 
@@ -39,7 +42,7 @@ const SelectBox = () => {
 		return (
 			<div className='main__select select'>
 				<p className='select__text' onClick={handleOpen}>
-					{orderFilter}
+					{sortFilter}
 				</p>
 				{isOpened && (
 					<div className='select__block' onClick={handleSelect}>

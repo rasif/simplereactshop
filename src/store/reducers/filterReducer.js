@@ -1,16 +1,16 @@
 import * as filterTypes from '../types/filterTypes';
 
 const initialState = {
-	orderFilter: 'Select',
+	sortFilter: 'Select',
 	sizeFilter: []
 };
 
 const filterReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case filterTypes.SET_ORDER_FILTER:
+		case filterTypes.SET_SORT_FILTER:
 			return {
 				...state,
-				orderFilter: action.payload.filter
+				sortFilter: action.payload.filter
 			};
 		case filterTypes.ADD_SIZE_FILTER:
 			return {

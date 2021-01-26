@@ -1,26 +1,29 @@
 class FilterService {
-	static filterItemsByOrder = (items, filter) => {
+	static filterProductsByOrder = (products, filter) => {
 		if (filter === 'Highest to lowest') {
-			return items.sort((a, b) => (a.price < b.price ? 1 : -1));
+			return products.sort((a, b) => (a.price < b.price ? 1 : -1));
 		} else if (filter === 'Lowest to highest') {
-			return items.sort((a, b) => (a.price > b.price ? 1 : -1));
+			return products.sort((a, b) => (a.price > b.price ? 1 : -1));
 		} else {
-			return [...items];
+			return products;
 		}
 	};
 
-	static filterItemsBySizes = (items, filter) => {
+	static filterProductsBySizes = (products, filter) => {
 		if (!filter.length) {
-			return items;
+			return products;
 		}
 
-		return items.filter(item => item.sizes.some(size => filter.includes(size)));
+		return products.filter(product => product.sizes.some(size => filter.includes(size)));
 	};
 
-	static filterItems = (items, sizeFilter, orderFilter) => {
-		let filtered = this.filterItemsBySizes(items, sizeFilter);
+	static filterProducts = (products, sizeFilter, orderFilter) => {
+		let filtered = [...products];
 
-		return this.filterItemsByOrder(filtered, orderFilter);
+		filtered = this.filterProductsBySizes(filtered, sizeFilter);
+		filtered = this.filterProductsByOrder(filtered, orderFilter);
+
+		return filtered;
 	};
 }
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {selectItems, selectIsOpened} from '../../store/selectors/cartSelectors';
+import {selectCartItems, selectIsCartOpened} from '../../store/selectors';
 import {closeCart} from '../../store/actions/cartActions';
 import CartService from '../../services/CartService';
 
@@ -9,8 +9,8 @@ import CartItem from '../partials/CartItem';
 const CartBox = () => {
 	console.log('Cart');
 
-	const items = useSelector(state => selectItems(state));
-	const isOpened = useSelector(state => selectIsOpened(state));
+	const items = useSelector(state => selectCartItems(state));
+	const isOpened = useSelector(state => selectIsCartOpened(state));
 
 	const clickOutsideRef = useRef();
 

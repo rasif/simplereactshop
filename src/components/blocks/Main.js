@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {getProducts} from '../../store/actions/shopActions';
 import {openCart} from '../../store/actions/cartActions';
-import {selectLoading, selectProducts} from '../../store/selectors/shopSelectors';
+import {selectShopLoading, selectFilteredProducts} from '../../store/selectors';
 import Loading from '../partials/Loading';
 import SelectBox from '../partials/SelectBox';
 import ProductList from '../partials/ProductList';
@@ -10,14 +10,8 @@ import ProductList from '../partials/ProductList';
 const Main = () => {
 	console.log('Main');
 
-	const loading = useSelector(state => selectLoading(state));
-	const filter = useSelector(state => state.filter);
-	let products = useSelector(state => state.shop.products);
-
-	// let items = useSelector(state => selectItems(state));
-	// так лишний раз вызывается рендерится
-
-	products = selectProducts(products, filter);
+	const loading = useSelector(state => selectShopLoading(state));
+	const products = useSelector(state => selectFilteredProducts(state));
 
 	const dispatch = useDispatch();
 
