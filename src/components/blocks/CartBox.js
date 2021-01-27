@@ -9,8 +9,8 @@ import CartItem from '../partials/CartItem';
 const CartBox = () => {
 	console.log('Cart');
 
-	const items = useSelector(state => selectCartItems(state));
-	const isOpened = useSelector(state => selectIsCartOpened(state));
+	const items = useSelector(selectCartItems);
+	const isOpened = useSelector(selectIsCartOpened);
 
 	const clickOutsideRef = useRef();
 

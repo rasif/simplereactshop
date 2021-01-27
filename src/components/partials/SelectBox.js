@@ -7,7 +7,7 @@ const SelectBox = () => {
 	console.log('Select');
 
 	const [isOpened, setIsOpened] = useState(false);
-	const sortFilter = useSelector(state => selectSortFilter(state));
+	const sortFilter = useSelector(selectSortFilter);
 
 	const dispatch = useDispatch();
 

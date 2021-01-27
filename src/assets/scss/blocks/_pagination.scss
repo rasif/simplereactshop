@@ -1,0 +1,27 @@
+.pagination {
+    margin-top: 15px;
+
+    &__list {
+        list-style: none;
+        text-align: center;        
+    }
+
+    &__item {
+        display: inline-block;
+        font-size: 12px;
+        padding: 5px 7px;
+        background-color: $grayColorOne;
+        cursor: pointer;
+        transition: background-color 0.4s;
+        user-select: none;
+
+        &-current {
+            background-color: darken($grayColorOne, 8%);
+        }
+
+        &:hover {
+            background-color: darken($grayColorOne, 8%);
+            transition: background-color 0.4s;
+        }
+    }
+}

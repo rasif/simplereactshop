@@ -12,7 +12,7 @@ export const selectShopLoading = state => state.shop.loading;
 
 export const selectFilteredProducts = createSelector(
 	[selectProducts, selectSizeFilter, selectSortFilter],
-	(products, sizeFilter, sortFilter) => {
+	(products, sizeFilter, sortFilter, page) => {
 		return FilterService.filterProducts(products, sizeFilter, sortFilter);
 	}
 );

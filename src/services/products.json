@@ -33,5 +33,40 @@
         "price": 37,
         "image": "/images/5.jpg",
         "sizes": ["XS"]
+    },
+    {
+        "id": 6,
+        "name": "Sneakers Six",
+        "price": 20,
+        "image": "/images/6.jpg",
+        "sizes": ["L", "M"]
+    },
+    {
+        "id": 7,
+        "name": "Sneakers Seven",
+        "price": 14,
+        "image": "/images/7.jpg",
+        "sizes": ["L", "M"]
+    },
+    {
+        "id": 8,
+        "name": "Sneakers Eight",
+        "price": 80,
+        "image": "/images/8.jpg",
+        "sizes": ["ML"]
+    },
+    {
+        "id": 9,
+        "name": "Sneakers Nine",
+        "price": 60,
+        "image": "/images/9.jpg",
+        "sizes": ["S"]
+    },
+    {
+        "id": 10,
+        "name": "Sneakers Ten",
+        "price": 120,
+        "image": "/images/10.jpg",
+        "sizes": ["S"]
     }
 ]
