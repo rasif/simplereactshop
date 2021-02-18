@@ -1,0 +1,39 @@
+.search {
+    position: relative;
+
+    &__input {
+        outline: none;
+        border: 1px solid white;
+        padding: 5px;
+        padding-left: 25px;
+        transition: 0.4s;
+        width: 30%;
+        min-width: 200px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 200;
+        
+        &::placeholder {
+            font-family: 'Roboto', sans-serif;
+            color: black;
+            font-weight: 100;
+        }
+
+        &:hover {
+            background-color:#f9f9f9;
+            transition: 0.4s;
+        }
+
+        &:focus {
+            width: 100%;
+            transition: 0.4s;
+            border-color: #f9f9f9;
+        }
+    }
+
+    &__sign {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+    }
+}

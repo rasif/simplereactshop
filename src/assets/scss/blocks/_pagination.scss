@@ -10,18 +10,19 @@
         display: inline-block;
         font-size: 12px;
         padding: 5px 7px;
-        background-color: $grayColorOne;
         cursor: pointer;
-        transition: background-color 0.4s;
         user-select: none;
+        border: 1px solid white;
+        transition: background-color 0.4s, border-color 0.4s;
 
         &-current {
-            background-color: darken($grayColorOne, 8%);
+            border: 1px solid $grayColorOne;
         }
 
         &:hover {
-            background-color: darken($grayColorOne, 8%);
-            transition: background-color 0.4s;
+            background-color: $grayColorOne;
+            border-color: $grayColorOne;
+            transition: background-color 0.4s, border-color 0.4s;
         }
     }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
@@ -54,15 +54,28 @@ const fetchPageNumbers = (totalPages, currentPage, pageNeighbours) => {
 };
 
 const Pagination = ({currentPage, countOfProducts, postsPerPage = 2, pageNeighbours = 2, handlePaginate}) => {
+	console.log('Pagination');
+
 	const countOfPages = Math.ceil(countOfProducts / postsPerPage);
 
-	if (countOfPages <= 1) {
-		return null;
-	}
+	const changePagesRef = useRef();
+	changePagesRef.current = e => {
+		if (e.keyCode === 39 && currentPage < countOfPages) {
+			handlePaginate(currentPage + 1);
+		} else if (e.keyCode === 37 && currentPage > 1) {
+			handlePaginate(currentPage - 1);
+		}
+	};
 
 	const pageNumbers = fetchPageNumbers(countOfPages, currentPage, pageNeighbours);
 
-	console.log(pageNumbers);
+	const onChangePageKeyDown = e => changePagesRef.current(e);
+
+	useEffect(() => {
+		document.addEventListener('keydown', onChangePageKeyDown);
+
+		return () => document.removeEventListener('keydown', onChangePageKeyDown);
+	}, []);
 
 	const onChangePage = e => {
 		if (e.target.classList.contains('pagination__item')) {
@@ -81,6 +94,10 @@ const Pagination = ({currentPage, countOfProducts, postsPerPage = 2, pageNeighbo
 
 		handlePaginate(currentPage + pageNeighbours + 1);
 	};
+
+	if (countOfPages <= 1) {
+		return null;
+	}
 
 	return (
 		<div className='pagination'>
